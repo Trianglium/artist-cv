@@ -50,6 +50,7 @@ class Dev(Configuration):
         'django.contrib.staticfiles',
         'crispy_forms',
         'crispy_bootstrap5',
+        'portfolio.apps.PortfolioConfig'
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
