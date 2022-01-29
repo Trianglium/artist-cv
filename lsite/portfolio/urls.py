@@ -4,6 +4,6 @@ from . import views
 
 app_name='portfolio'
 urlpatterns = [
-    path('', IndexView.as_view(), name='all')
+    path('', index.IndexView.as_view(), name='all')
 
 ]
