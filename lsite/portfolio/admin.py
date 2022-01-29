@@ -6,4 +6,5 @@ class ProjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 admin.site.register(Category)
+admin.site.register(Tag)
 admin.site.register(Project, ProjectAdmin)

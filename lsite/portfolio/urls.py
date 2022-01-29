@@ -3,4 +3,7 @@ from django.views.generic import TemplateView
 from . import views
 
 app_name='portfolio'
-urlpatterns = []
+urlpatterns = [
+    path('', IndexView.as_view(), name='all')
+
+]
