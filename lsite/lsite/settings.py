@@ -22,6 +22,12 @@ import logging
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
+    # App Name to be displayed on site
+    APP_NAME = "Artist-CV"
+
+    # Brand Name is the Navbar's 'logo' or 'brand'
+    BRAND_NAME = "LUKE DIXON"
+
 
 
     # Quick-start development settings - unsuitable for production
@@ -50,7 +56,7 @@ class Dev(Configuration):
         'django.contrib.staticfiles',
         'crispy_forms',
         'crispy_bootstrap5',
-        'portfolio.apps.PortfolioConfig'
+        'portfolio.apps.PortfolioConfig',
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

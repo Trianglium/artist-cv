@@ -1,5 +1,5 @@
 from django.contrib import admin
-from portfolio.models import Category, Project
+from portfolio.models import Category, Project, Tag
 
 # Slug field is automatic. Based on title of Project.
 class ProjectAdmin(admin.ModelAdmin):
