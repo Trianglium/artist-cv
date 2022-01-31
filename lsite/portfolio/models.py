@@ -20,17 +20,20 @@ class Category(models.Model):
         max_length=3,
         choices=PROJECT_TYPES,
          help_text = """
-         This is just a general guide, feel free to use the categories however you wish.
-         If a category doesn't quite feel right, choose the closet category and add the more suitable category name as a tag.
-         Here is an explanation of the Named Categories:
-            (Literature) = including poetry, drama, story, and so on.
-            (Visual Arts) = painting, drawing, sculpture, etc.
-            (Graphic Arts) = painting, drawing, design, and other forms expressed on flat surfaces.
-            (Plastic Arts) = sculpture, modeling, etc.
-            (Decorative Arts) = enamelwork, furniture design, mosaic, etc.
-            (Performing Arts) = theatre, dance, music.
-            (Music) = composition, sound, and so on.
-            (Architecture) = includes interior design.
+         <i>This is a general guide, feel free to use the categories however you wish.</i>
+         <br> The Categories will be used to split up portfolio sections based on art type.
+         <br>
+         <br>Explanation of the Named Categories:<br>
+            <br>(Literature) = including poetry, drama, story, and so on.
+            <br>(Visual Arts) = painting, drawing, sculpture, etc.
+            <br>(Graphic Arts) = painting, drawing, design, and other forms expressed on flat surfaces.
+            <br>(Plastic Arts) = sculpture, modeling, etc.
+            <br>(Decorative Arts) = enamelwork, furniture design, mosaic, etc.
+            <br>(Performing Arts) = theatre, dance, music.
+            <br>(Music) = composition, sound, and so on.
+            <br>(Architecture) = includes interior design.
+            <br>
+            <br><i>If a category doesn't quite feel right, choose the closet category and add the more suitable category name as a tag.</i>
          """
     )
 

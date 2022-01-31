@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+<h4>{{ title }}</h4>
+<ul>
+  {% for project in projects %}
+    <li><a href="{% url "portfolio:project_detail" project.slug %}">{{ project.title }}</a></li>
+  {% empty %}
+    <li>No articles yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

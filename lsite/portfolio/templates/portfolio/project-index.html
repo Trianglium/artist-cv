@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+  <h2>Portfolio</h2>
+  {% for project in projects %}
+  {% row "border-bottom" %}
+    {% col %}
+      <p><strong>{{ project.categories }}</strong></p>
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.summary }}</p>
+      <p>{{ project.tags }}</p>
+      <p><a href="{% url "project_detail" project.slug %}">Read More</a></p>
+    {% endcol %}
+  {% endrow %}
+  {% endfor %}
+{% endblock %}

@@ -26,3 +26,9 @@ def col(extra_classes=''):
 @register.simple_tag
 def endcol():
     return format_html("</div>")
+
+
+# iFrames for Urls
+@register.simple_tag
+def iframe(link='', width='100%', height='100%', fborder='0', trans='true'):
+    return format_html('<iframe src="{}" width="{}" height="{}" frameBorder="{}" allowtransparency="{}" allow="encrypted-media"></iframe>', link, width, height, fborder, trans)
