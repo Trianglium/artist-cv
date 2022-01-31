@@ -28,6 +28,10 @@ class Dev(Configuration):
     # Brand Name is the Navbar's 'logo' or 'brand'
     BRAND_NAME = "LUKE DIXON"
 
+    # Media / Images Directory
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
     # Quick-start development settings - unsuitable for production
