@@ -3,22 +3,22 @@
 {% block content %}
 <!-- Project Title / Full Summary / Detailed View -->
   <h2>{{ project.title }}</h2>
-  {% row %}
+  {% row "mt-4" %}
     {% col "col-sm-8" %}
       {{ project.content|safe }}
     {% endcol %}
     {% col "col-sm-4" %}
-    {% iframe "{{ project.link }}" %}
+      <iframe src="{{ project.link }}" width="100%" height="100%" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
      {{ project.link }}
     {% endcol %}
   {% endrow %}
 
   {% row %}
-  {% col "col-sm-6" %}
-    {{ project.tags }}
-  {% endcol %}
-  {% col "col-sm-6" %}
-  {{ project.categories }}
-  {% endcol %}
-{% endrow %}
+    {% col "col-sm-6" %}
+      {{ project.tags }}
+    {% endcol %}
+    {% col "col-sm-6" %}
+      {{ project.category }}
+    {% endcol %}
+  {% endrow %}
 {% endblock %}

@@ -27,8 +27,14 @@ def col(extra_classes=''):
 def endcol():
     return format_html("</div>")
 
-
-# iFrames for Urls
+# Container
 @register.simple_tag
-def iframe(link='', width='100%', height='100%', fborder='0', trans='true'):
-    return format_html('<iframe src="{}" width="{}" height="{}" frameBorder="{}" allowtransparency="{}" allow="encrypted-media"></iframe>', link, width, height, fborder, trans)
+def container(extra_classes='', fluid=False):
+    if bool(fluid)==False:
+        return format_html('<div class="container-xs {}">', extra_classes)
+    elif bool(fluid)==True:
+        return format_html('<div class="container-fluid {}">', extra_classes)
+
+@register.simple_tag
+def endcontainer():
+    return format_html("</div>")

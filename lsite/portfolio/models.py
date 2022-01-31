@@ -37,6 +37,15 @@ class Category(models.Model):
          """
     )
 
+    secondary = models.CharField(
+        max_length=100,
+        unique=True,
+        null=True,
+        editable=True,
+        help_text="Secondary Category for the project. Define a more specific grouping here.",
+
+    )
+
 
     def __str__(self):
         return self.name
@@ -54,18 +63,18 @@ class Project(models.Model):
     # Slug is an automatic field.
     slug = models.SlugField()
     # Summary to show as a preview. Not the full text.
-    summary = models.TextField(max_length=500)
+    summary = models.TextField(max_length=255)
 
     # Image file. Optional field.
-    media = models.ImageField(upload_to='images', null=True, editable=True)
+    media = models.ImageField(upload_to='media/images', null=True, editable=True)
 
-    # URL Field for Audio
+    # URL Field, Optional. Audio, Video, and external sites.
     link = models.URLField(null=True, editable=True)
 
     # Longer / Full Summary. Talk about your project in this field.
     content = models.TextField()
     # Art Category of Project (Categories will be split into different portfolio pages)
-    categories = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     # Additional tags for the project (This will help with search and more.)
     tags = models.ManyToManyField(Tag, related_name="projects")
 
