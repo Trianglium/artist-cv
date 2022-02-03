@@ -18,6 +18,6 @@ class Project(models.Model):
     image = models.FilePathField(path="/img", null=True)
     # Optional Audio / Sound for or of Project
     # Intended for Musicians and Sound Related Artistis
-    sound = models.FilePathField(path=“/audio”, null=True)
+    sound = models.FilePathField(path="/audio", null=True)
     # Optional video / clip for or of  project
-    video = models.FilePathField(path=“/vid”, null=True)
+    video = models.FilePathField(path="/vid", null=True)
