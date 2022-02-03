@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load project_extras %}
+{% block content %}
+<h1>{{ project.title }}</h1>
+<p>{{ project.description }}</p>
+<!-- {% if media_list %}
+    {% for media in media_list %}
+        <p>Media, Yes.</p>
+    {% endfor %}
+{% else %}
+    <p>No Media.</p>
+{% endif %} -->
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load project_extras %}
+{% block content %}
+{% if project_list %}
+  {% for project in project_list %}
+     <li><a href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></li>
+  {% endfor %}
+{% else %}
+    <p>Projects Coming Soon!</p>
+{% endif %}
+{% endblock %}
