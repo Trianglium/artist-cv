@@ -1,12 +1,33 @@
 {% extends "base.html" %}
 {% load project_extras %}
 {% block content %}
-
-{% if project_list %}
-  {% for project in project_list %}
-     <li><a href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></li>
+{% container  "p-5 bg-primary text-light text-right rounded" %}
+  <p class="display-1">Projects</p>
+  <p class="h4"><small class="text-muted">Welcome to the Projects Index Page</small></p>
+{% endcontainer %}
+  {% for project in projects %}
+  {% row "border-bottom" %}
+    {% col %}
+      <p><strong>{{ project.skill }}</strong></p>
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.summary }}</p>
+      {% if project.image %}
+        <p>{{ project.image }}</p>
+      {% endif %}
+      {% if project.sound %}
+        <p>{{ project.sound }}</p>
+      {% endif %}
+      {% if project.video %}
+        <p>{{ project.video }}</p>
+      {% endif %}
+      <p><a href="{% url 'projects:project_detail' project.id %}">Read More</a></p>
+    {% endcol %}
+  {% endrow %}
+  {% empty %}
+  {% row "border-bottom" %}
+    {% col %}
+      <li>Projects coming soon.</li>
+    {% endcol %}
+  {% endrow %}
   {% endfor %}
-{% else %}
-    <p>Projects Coming Soon!</p>
-{% endif %}
 {% endblock %}
