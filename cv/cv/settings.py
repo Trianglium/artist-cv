@@ -25,9 +25,6 @@ class Dev(Configuration):
     # App Name to be displayed on site
     APP_NAME = "Artist-CV"
 
-    # Brand Name is the Navbar's 'logo' or 'brand'
-    BRAND_NAME = "LUKE DIXON"
-
     # Media / Images Directory
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
