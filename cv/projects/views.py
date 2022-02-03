@@ -8,7 +8,7 @@ from projects.models import Project
 class ProjectIndexView(generic.ListView):
     model = Project
     template_name = 'projects/project_index.html'
-
+    context_object_name = 'project_list'
 
 
 class ProjectDetailView(generic.DetailView):
