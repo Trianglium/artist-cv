@@ -6,7 +6,7 @@ class Project(models.Model):
     # Use Summary as a preview for your post.
     # People viewing your site will see the summary before they decide whether or not to view the Project details.
     # Similar to what you see on a google results page before deciding to click on a website result.
-    summary = models.Charfield(max_length=155)
+    summary = models.CharField(max_length=155)
     # Description of the project (in depth, or not, use as you please).
     # This is where you describe the actual  details of everything.
     # There is no set max length for the description field.

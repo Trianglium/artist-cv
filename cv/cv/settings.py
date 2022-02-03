@@ -58,6 +58,7 @@ class Dev(Configuration):
         'crispy_forms',
         'crispy_bootstrap5',
         'portfolio.apps.PortfolioConfig',
+        'projects.apps.ProjectsConfig',
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
