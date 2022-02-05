@@ -27,7 +27,7 @@ class Dev(Configuration):
 
     # Media / Images Directory
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
 
 
 
@@ -59,6 +59,7 @@ class Dev(Configuration):
         'crispy_bootstrap5',
         'portfolio.apps.PortfolioConfig',
         'projects.apps.ProjectsConfig',
+        'media',
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -75,11 +76,11 @@ class Dev(Configuration):
     ]
 
     ROOT_URLCONF = 'cv.urls'
-
+    TEMPLATE_BASE_DIR = os.path.dirname(__file__)
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [BASE_DIR/'templates',],
+            'DIRS': [os.path.join(TEMPLATE_BASE_DIR, 'templates'),],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [

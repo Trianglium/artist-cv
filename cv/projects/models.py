@@ -15,9 +15,9 @@ class Project(models.Model):
     # It’s recommended that skill names remain consistent as to help with navigating the site.
     skill = models.CharField(max_length=20)
     # Optional Image of or for Project
-    image = models.FilePathField(path="/img", null=True)
+    image = models.FilePathField(path="/media/img", null=True)
     # Optional Audio / Sound for or of Project
     # Intended for Musicians and Sound Related Artistis
-    sound = models.FilePathField(path="/audio", null=True)
+    sound = models.FilePathField(path="/media/audio", null=True)
     # Optional video / clip for or of  project
-    video = models.FilePathField(path="/vid", null=True)
+    video = models.FilePathField(path="/media/vid", null=True)

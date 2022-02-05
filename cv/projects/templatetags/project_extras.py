@@ -11,7 +11,7 @@ register = template.Library()
 # Rows
 @register.simple_tag
 def row(extra_classes=''):
-    return format_html('<div class="row {}">', extra_classes)
+    return format_html('<div class="row {} m-2 p-2">', extra_classes)
 
 @register.simple_tag
 def endrow():

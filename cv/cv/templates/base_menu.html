@@ -1,12 +1,6 @@
-{% extends "base-skeleton.html" %}
+{% extends "base_skeleton.html" %}
 {% block navbar %}
 <ul class="navbar-nav me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'about:all' %}">About</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'about:contact' %}">Contact</a>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'portfolio:all' %}">Portfolio</a>
   </li>
@@ -14,7 +8,7 @@
     <a class="nav-link" href="#">Blog</a>
   </li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'projects:all' %}" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+    <a class="nav-link dropdown-toggle" href="{% url 'projects:project_index' %}">Projects</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Action</a>
       <a class="dropdown-item" href="#">Another action</a>
