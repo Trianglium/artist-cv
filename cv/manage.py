@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.9
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
@@ -7,7 +7,8 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cv.settings')
-    os.environ.setdefault("DJANGO_CONFIGURATION", "Dev")
+    os.environ.setdefault('DJANGO_CONFIGURATION', 'Dev')
+
     try:
         from configurations.management import execute_from_command_line
     except ImportError as exc:
