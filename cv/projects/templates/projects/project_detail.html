@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load project_extras %}
+{% block content %}
+<!-- Project Title / Full Summary / Detailed View -->
+  <h2>{{ project.title }}</h2>
+  {% row "mt-4" %}
+    {% col "col-sm-8" %}
+      {{ project.description|safe }}
+    {% endcol %}
+    {% col "col-sm-4" %}
+    {% endcol %}
+  {% endrow %}
+{% endblock %}
+
