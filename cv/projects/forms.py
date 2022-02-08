@@ -15,10 +15,10 @@ class CreateForm(forms.ModelForm):
     max_upload_limit_text = naturalsize(max_upload_limit)
     project_content = forms.FileField(required=False, label='File to Upload <= '+max_upload_limit_text)
     upload_field_name = 'project_content'
-   
+
     class Meta:
         model = Project
-        fields = ['title', 'summary', 'description', 'skill']
+        fields = ['title', 'summary', 'description', 'skills', 'project_content']
 
     # Validate the size of the project_content
     def clean(self):
@@ -33,12 +33,12 @@ class CreateForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super(CreateForm, self).save(commit=False)
 
-        # We only need to adjust picture if it is a freshly uploaded file
+        # We only need to adjust media if it is a freshly uploaded file
         f = instance.project_content   # Make a copy
         if isinstance(f, InMemoryUploadedFile):  # Extract data from the form to the model
             bytearr = f.read()
             instance.content_type = f.content_type
-            instance.project_content = bytearr  # Overwrite with the actual image data
+            instance.project_content = bytearr  # Overwrite with the actual media data
 
         if commit:
             instance.save()

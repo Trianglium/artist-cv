@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,8 +17,8 @@ from projects.forms import CreateForm
 class ProjectIndexView(OwnerListView):
     template = 'projects/project_index.html'
     def get(self, request):
-        project_list = Project.objects.all()
-        return render(request, template_name=self.template, context={'project_list':project_list})
+        projects_list = Project.objects.all()
+        return render(request, template_name=self.template, context={'projects_list':projects_list})
 
 
 # Details of a singular Project ("Read more" takes you here)
@@ -26,32 +26,30 @@ class ProjectDetailView(OwnerDetailView):
     model = Project
     template = 'projects/project_detail.html'
     # Summary not included - Only wanted it for the preview
-    fields = ['title', 'description', 'project_content', 'skill']
+    fields = ['title', 'description', 'skills', 'project_content', 'content_type']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk):
-        project = Project.objects.get(id=pk)
-        return render(request, template_name=self.template, context={'project':project})
+        p = Project.objects.get(id=pk)
+        return render(request, template_name=self.template, context={'project':p})
 
 
 # Create a New Project.
 class ProjectCreateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title','summary', 'description', 'project_content', 'skill']
+    fields = ['title', 'summary', 'description', 'project_content', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
         form = CreateForm()
-        context = {'form': form}
-        return render(request, template_name=self.template, context=context)
+        return render(request, template_name=self.template, context={'form': form})
 
     def post(self, request, pk=None):
         form = CreateForm(request.POST, request.FILES or None)
 
         if not form.is_valid():
-            context = {'form': form}
-            return render(request, template_name=self.template, context=context)
+            return render(request, template_name=self.template, context={'form': form})
 
         # Add owner to the model before saving
         # Adjust before saving
@@ -69,7 +67,7 @@ class ProjectCreateView(LoginRequiredMixin, View):
 class ProjectUpdateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title','summary', 'description', 'project_content', 'skill']
+    fields = ['title','summary', 'description', 'project_content', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -95,7 +93,7 @@ class ProjectUpdateView(LoginRequiredMixin, View):
 class ProjectDeleteView(OwnerDeleteView):
     template='projects/project_confirm_delete.html'
     model = Project
-    fields = ['title','summary', 'description', 'project_content', 'skill']
+    fields = ['title','summary', 'description', 'project_content', 'skills']
     success_url = reverse_lazy('projects:all')
 
 # Sets Project.project_content field

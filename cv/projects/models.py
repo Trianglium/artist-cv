@@ -22,18 +22,17 @@ class Project(models.Model):
     description = models.TextField()
     # Use the skill field as a sort of ‘tag’ for what the project is about.
     # It’s recommended that skill names remain consistent as to help with navigating the site.
-    skill = TaggableManager(blank=True)
+    skills = TaggableManager(blank=True)
 
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='project_owner')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     # Media
     project_content = models.BinaryField(null=True, editable=True)
     content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
 
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # Owner & Technical Info
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='project_owner')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
     # Shows up in the admin list
     def __str__(self):
