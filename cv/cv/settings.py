@@ -31,12 +31,12 @@ class Dev(configurations.Configuration):
     # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = 'django-insecure-@lo4umkwl5_w35h^j@&ojqie-oc1zrrvcw3&1!ii3x#jazw$=('
+    SECRET_KEY = ''
 
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 
-    ALLOWED_HOSTS = ['LDixon.pythonanywhere.com']
+    ALLOWED_HOSTS = ['']
 
     # Admin Settings
     ADMINS = [("Luke Dixon", "L.DegenDixon@gmail.com")]
