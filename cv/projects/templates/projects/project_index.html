@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% load project_extras %}
+{% block style %}
+.pt-link {
+  text-decoration: none;
+}
+.pt-link:hover {
+  color: #76717b;
+}
+{% endblock %}
 {% block content %}
 {% container  "p-5 bg-primary text-light text-right rounded" %}
   <p class="display-1">Projects</p>
@@ -8,7 +16,7 @@
 {% for project in projects_list %}
   {% row "border-bottom p-4 mt-4" %}
     {% col %}
-      <p class="display-5"><a href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></p>
+      <p class="display-5"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></p>
       <p>{{ project.summary }}</p>
     {% endcol %}
   {% endrow %}
