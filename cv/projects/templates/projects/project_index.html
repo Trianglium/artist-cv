@@ -7,18 +7,47 @@
 .pt-link:hover {
   color: #76717b;
 }
+#media-icon {
+  color: #bab2c2;
+  font-size: 96px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#media-icon:hover {
+  color: #f6f5f7;
+}
+
+
 {% endblock %}
 {% block content %}
 {% container  "p-5 bg-primary text-light text-right rounded" %}
   <p class="display-1">Projects</p>
-  <p class="h4"><small class="text-muted">Welcome to the Projects Index Page</small></p>
+  <p class="display-5"><small class="text-muted">Welcome to the Projects Index Page</small></p>
 {% endcontainer %}
 {% for project in projects_list %}
   {% row "border-bottom p-4 mt-4" %}
-    {% col %}
-      <p class="display-5"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></p>
-      <p>{{ project.summary }}</p>
+  <div class="clearfix">
+    {% col "col-sm-6" %}
+    <span class="float-start">
+      <p class="display-4"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></p>
+      <p class="h3"><small class="text-muted">{{ project.summary }}</small></p>
     {% endcol %}
+    </span>
+    <span class="float-end me-5 bg-primary rounded text-center p-4">
+    {% col "col-sm-6" %}
+    {% if 'audio' in project.content_type %}
+    <i class="material-icons" id="media-icon">play_circle_outline</i>
+    {% endif %}
+    {% if 'image' in project.content_type %}
+    <i class="material-icons" id="media-icon">photo</i>
+    {% endif %}
+    {% if 'video' in project.content_type %}
+    <i class="material-icons" id="media-icon">ondemand_video</i>
+    {% endif %}
+      <p class="monospace">{{ project.content_type }}</p>
+    {% endcol %}
+    </span>
+  </div>
   {% endrow %}
   {% empty %}
   {% row "border-bottom" %}
