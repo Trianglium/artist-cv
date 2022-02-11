@@ -43,3 +43,24 @@ def endcontainer():
 @register.simple_tag
 def title_subtitle(title="", subtitle=""):
     return format_html('<p class="display-1">{}</p><p class="h4"><small class="text-muted">{}</small></p>', title, subtitle)
+
+
+
+# <span class="material-icons-outlined">pause_circle_outline</span>
+@register.simple_tag
+def media_icon(post=""):
+    media_key = {'audio':'<span class="material-icons-outlined">play_circle_outline</span>', 'image':'<span class="material-icons-outlined">photo</span>', 'video':'<span class="material-icons-outlined">ondemand_video</span>' }
+    for mtype in media.keys():
+        if mtype in post:
+            return format_html(media[k])
+    return None
+
+
+
+
+
+
+
+
+
+
