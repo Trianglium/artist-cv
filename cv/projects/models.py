@@ -5,6 +5,8 @@ from django.conf import settings
 from taggit.managers import TaggableManager
 
 
+
+
 class Project(models.Model):
     # Title of the Project, give it a unique name.
     title = models.CharField(
