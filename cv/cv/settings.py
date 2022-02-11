@@ -62,6 +62,8 @@ class Dev(configurations.Configuration):
         'taggit',
         # Project apps
         'projects.apps.ProjectsConfig',
+        'about.apps.AboutConfig',
+        'blog.apps.BlogConfig',
     ]
 
     MIDDLEWARE = [
