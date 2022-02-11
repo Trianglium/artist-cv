@@ -26,6 +26,9 @@ class Dev(configurations.Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
+    # Django settings module for wsgi and googledrivestorage
+    DJANGO_SETTINGS_MODULE = 'cv.settings'
+
 
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -36,10 +39,10 @@ class Dev(configurations.Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 
-    ALLOWED_HOSTS = ['']
+    ALLOWED_HOSTS = ['pythonanywhere.com']
 
     # Admin Settings
-    ADMINS = [("Luke Dixon", "L.DegenDixon@gmail.com")]
+    ADMINS = [("name", "name@gmail.com")]
 
 
     # Application definition
@@ -152,6 +155,13 @@ class Dev(configurations.Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+    # Google Drive Storage
+    #GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
+    # contents of secret key file
+    #GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS = ''
+    # Optional Media Root
+    #GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = ''
+
     # default static files settings for PythonAnywhere.
     # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
 
@@ -167,6 +177,10 @@ class Dev(configurations.Configuration):
 
     # For Taggging (Tags have alternative names in Projects app)
     TAGGIT_CASE_INSENSITIVE = True
+
+    # Max upload size default = 2mb
+    # 5 mb = 5242880
+    MAX_UPLOAD_SIZE = "5242880"
 
 
 
