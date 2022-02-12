@@ -1,8 +1,6 @@
-{% extends "base.html" %}
-{% load blog_extras %}
-
-{% block style %}
-{% endblock %}
-
-{% block content %}
-{% endblock %}
+<h4>{{ title }}</h4>
+<ul>
+{% for post in posts %}
+    <li><a href="{% url "blog-post-detail" post.slug %}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
