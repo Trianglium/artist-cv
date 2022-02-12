@@ -1,8 +1,2 @@
-{% extends "base.html" %}
 {% load blog_extras %}
-
-{% block style %}
-{% endblock %}
-
-{% block content %}
-{% endblock %}
+<small>By {{ post.author|author_details:request.user }} on {{ post.published_at|date:"M, d Y" }}</small>
