@@ -29,9 +29,4 @@ class Section(models.Model):
 
 class Contact(models.Model):
     email = models.EmailField(null=True, editable=True),
-    number = models.IntegerField(
-        null=True, 
-        editable=True, 
-        validators=[MinLengthValidator(10, "Phone Numbers are at least 10 digits long")]
-    )
-
+    number = models.IntegerField(null=True, editable=True)
