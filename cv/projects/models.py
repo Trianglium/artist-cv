@@ -1,11 +1,30 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, URLValidator
 from django.conf import settings
 
 from taggit.managers import TaggableManager
 
 
 
+
+# Project Link (URL) - for External Content that needs to be included
+class Link(models.Model):
+    name = models.CharField(max_length=255, help_text='Name your URL something meaningful. This field is public.', editable=True)
+    info = models.TextField(help_text='Add a Short Description for this URL. This field is public.', null=True, editable=True)
+    url = models.URLField(
+        max_length=1000,
+        unique=True,
+        editable=True,
+        validators=[URLValidator(message='Enter a valid URL - must be unqiue.')]
+    )
+    # https://anonfiles.com/1eB4O6H0x0/Orchestral_Intro_17_April_2021_mp3
+    def __str__(self):
+        return self.name
+
+class Content(models.Model):
+    # Uploads for Project. Any Images, Files, or ETC thats to be used with a Project Post.
+    project_content = models.BinaryField(null=True, editable=True)
+    content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
 
 class Project(models.Model):
     # Title of the Project, give it a unique name.
@@ -26,9 +45,11 @@ class Project(models.Model):
     # It’s recommended that skill names remain consistent as to help with navigating the site.
     skills = TaggableManager(blank=True)
 
-    # Media
-    project_content = models.BinaryField(null=True, editable=True)
-    content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
+    # Media - Upload to MemoryStorage (Optional)
+    uploads = models.ManyToManyField(Content, editable=True, help_text='Upload the Content to use with this project post and to store in memory.')
+
+    # Media - Add URL to your external content file (Optional)
+    links = models.ManyToManyField(Link, editable=True, help_text='Copy and Paste the url to the external content you want to include')
 
     # Owner & Technical Info
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='project_owner')
@@ -39,3 +60,5 @@ class Project(models.Model):
     # Shows up in the admin list
     def __str__(self):
         return self.title
+
+

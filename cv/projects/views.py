@@ -8,7 +8,7 @@ from django.db.models import Q
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-from projects.models import Project
+from projects.models import Project, Link, Content
 from projects.owner import OwnerListView, OwnerCreateView, OwnerDeleteView, OwnerUpdateView, OwnerDetailView
 from projects.forms import CreateForm
 
@@ -26,7 +26,7 @@ class ProjectDetailView(OwnerDetailView):
     model = Project
     template = 'projects/project_detail.html'
     # Summary not included - Only wanted it for the preview
-    fields = ['title', 'description', 'skills', 'project_content', 'content_type']
+    fields = ['title', 'description', 'skills', 'uploads', 'links']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk):
@@ -38,7 +38,7 @@ class ProjectDetailView(OwnerDetailView):
 class ProjectCreateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title', 'summary', 'description', 'project_content', 'skills']
+    fields = ['title', 'summary', 'description', 'uploads', 'links', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -67,7 +67,7 @@ class ProjectCreateView(LoginRequiredMixin, View):
 class ProjectUpdateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title','summary', 'description', 'project_content', 'skills']
+    fields = ['title','summary', 'description', 'uploads', 'links','skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -93,14 +93,14 @@ class ProjectUpdateView(LoginRequiredMixin, View):
 class ProjectDeleteView(OwnerDeleteView):
     template='projects/project_confirm_delete.html'
     model = Project
-    fields = ['title','summary', 'description', 'project_content', 'skills']
+    fields = ['title','summary', 'description', 'uploads', 'links', 'skills']
     success_url = reverse_lazy('projects:all')
 
-# Sets Project.project_content field
+# Sets Content.project_content field
 def stream_file(request, pk):
-    project = get_object_or_404(Project, id=pk)
+    content = get_object_or_404(Content, id=pk)
     response = HttpResponse()
-    response['Content-Type'] = project.content_type
-    response['Content-Length'] = len(project.project_content)
-    response.write(project.project_content)
+    response['Content-Type'] = content.content_type
+    response['Content-Length'] = len(content.project_content)
+    response.write(content.project_content)
     return response

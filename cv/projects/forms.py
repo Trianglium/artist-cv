@@ -4,7 +4,7 @@ from django.core import validators
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from projects.humanize import naturalsize
-from projects.models import Project
+from projects.models import Project, Content
 from taggit.forms import TagField
 
 
@@ -17,8 +17,8 @@ class CreateForm(forms.ModelForm):
     upload_field_name = 'project_content'
 
     class Meta:
-        model = Project
-        fields = ['title', 'summary', 'description', 'skills', 'project_content']
+        model = Content
+        fields = ['project_content']
 
     # Validate the size of the project_content
     def clean(self):
