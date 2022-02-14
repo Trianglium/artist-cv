@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load project_extras %}
+{% block content %}
+{% row "mt-4" %}
+    {% col "col-sm-6" %}
+      <p>
+        <a href="{% url 'projects:all' %}">Back to Projects</a>
+     </p>
+    {% endcol %}
+{% endrow %}
+<!-- Project Title / Full Summary / Detailed View -->
+{% container %}
+{% row "bottom-border text-center mb-1" %}
+<span style="float: right;">
+{% if project.owner == user %}
+  <a href="{% url 'projects:project_update' project.id %}"><i class="fa fa-pencil"></i></a>
+  <a href="{% url 'projects:project_delete' project.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+<p class="display-3">{{ project.title }}</p>
+{% endrow %}
+{% row %}
+    {% col "col-sm-12 mx-auto" %}
+      {% if 'audio' in project.content_type %}
+          <audio controls>
+              <source src="{% url 'projects:project_media' project.id %}" type="{{project.content_type}}">
+          </audio>
+      {% endif %}
+      {% if 'image' in project.content_type %}
+          <img src="{% url 'projects:project_media' project.id %}" style="max-width:50%;">
+      {% endif %}
+    {% endcol %}
+    {% col "col-sm-12 mt-4" %}
+      {{ project.description|safe }}
+    {% endcol %}
+{% endrow %}
+
+     <!-- SKILL TAGS -->
+{% row "mt-4" %}
+  {% col "col-sm-12" %}
+  {% if project.skills.all %}
+  <p>
+    {% for skill in project.skills.all %}
+      <span style="padding:2px;border-radius: 10px; background-color: #312244;color: #cad2c5;">{{ skill }}</span>
+    {% endfor %}
+  </p>
+  {% endif %}
+  {% endcol %}
+{% endrow %}
+ {% row "mt-4" %}
+    {% col "col-sm-6" %}
+      <p>
+        <a href="{% url 'projects:all' %}">Back to Projects</a>
+     </p>
+    {% endcol %}
+{% endrow %}
+{% endcontainer %}
+{% endblock %}
+
