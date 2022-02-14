@@ -1,0 +1,40 @@
+{% extends "base_skeleton.html" %}
+{% block navbar %}
+<ul class="navbar-nav me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="#">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Portfolio</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Contact</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="{% url 'projects:all' %}">Projects</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Sound</a>
+      <a class="dropdown-item" href="#">Edits</a>
+      <a class="dropdown-item" href="#">Albums</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Visual Arts</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Blog</a>
+  </li>
+</ul>
+<div class="d-flex">
+  	<a class="btn btn-primary" style="font-size: 1.375rem; padding: 0.15rem 0.3rem;" href="#" role="button">
+      <i class="fa fa-linkedin-square"></i>
+    </a>
+    <a class="btn btn-primary" style="font-size: 1.375rem; padding: 0.15rem 0.3rem;" href="#" role="button">
+      <i class="fa fa-twitter-square"></i>
+    </a>
+    <a class="btn btn-primary" style="font-size: 1.375rem; padding: 0.25rem 0.3rem;" href="#" role="button">
+      <i class="fa fa-soundcloud"></i>
+    </a>
+    <br>
+  <!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
+</div>
+{% endblock %}
