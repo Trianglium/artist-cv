@@ -20,6 +20,10 @@ class Project(models.Model):
     # This is where you describe the actual  details of everything.
     # There is no set max length for the description field.
     description = models.TextField()
+
+    # Media - Upload to MemoryStorage (Optional)
+    content_upload = models.ManyToManyField(Content, related_name='project_content', editable=True, help_text='Upload the Content to use with this project post and to store in memory.')
+
     # Use the skill field as a sort of ‘tag’ for what the project is about.
     # It’s recommended that skill names remain consistent as to help with navigating the site.
     skills = TaggableManager(blank=True)
@@ -36,7 +40,7 @@ class Project(models.Model):
 # Project Link (URL) - for External Content that needs to be included
 class Link(models.Model):
     name = models.CharField(max_length=255, help_text='Name your URL something meaningful. This field is public.', editable=True)
-    info = models.TextField(help_text='Add a Short Description for this URL. This field is public.', null=True, editable=True)
+    info = models.TextField(help_text='Add a Short Description for this URL. This field is public.', blank=True, editable=True)
     url = models.URLField(
         max_length=1000,
         unique=True,
@@ -45,20 +49,22 @@ class Link(models.Model):
     )
     # https://anonfiles.com/1eB4O6H0x0/Orchestral_Intro_17_April_2021_mp3
     # Media - Add URL to your external content file (Optional)
-    projects = models.ManyToManyField(Project, editable=True, help_text='Copy and Paste the url to the external content you want to include')
+    projects = models.ManyToManyField(Project, editable=True, related_name='content_link', help_text='Copy and Paste the url to the external content you want to include')
 
     def __str__(self):
         return self.name
 
 class Content(models.Model):
-    name = models.CharField(max_length=100, unique=True)
     # Uploads for Project. Any Images, Files, or ETC thats to be used with a Project Post.
-    project_content = models.BinaryField(null=True, editable=True)
+    media = models.BinaryField(null=True, editable=True)
     content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
+    name = models.CharField(max_length=100, blank=True)
     # Media - Upload to MemoryStorage (Optional)
-    projects = models.ManyToManyField(Project, editable=True, help_text='Upload the Content to use with this project post and to store in memory.')
 
     def __str__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.content_type
 
 
