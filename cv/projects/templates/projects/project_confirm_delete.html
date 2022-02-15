@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Delete Project</h1>
 
-<p>Are you sure you want to delete the project: {{ project }}?</p>
+<p>Are you sure you want to delete the project: {{ project.title }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}

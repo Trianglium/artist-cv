@@ -5,6 +5,22 @@ from django.conf import settings
 from taggit.managers import TaggableManager
 
 
+
+class Content(models.Model):
+    # Uploads for Project. Any Images, Files, or ETC thats to be used with a Project Post.
+    media = models.BinaryField(null=True, editable=True)
+    content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
+    name = models.CharField(max_length=100, blank=True)
+    # Media - Upload to MemoryStorage (Optional)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.content_type
+
+
+
 class Project(models.Model):
     # Title of the Project, give it a unique name.
     title = models.CharField(
@@ -54,17 +70,5 @@ class Link(models.Model):
     def __str__(self):
         return self.name
 
-class Content(models.Model):
-    # Uploads for Project. Any Images, Files, or ETC thats to be used with a Project Post.
-    media = models.BinaryField(null=True, editable=True)
-    content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
-    name = models.CharField(max_length=100, blank=True)
-    # Media - Upload to MemoryStorage (Optional)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return self.content_type
 
 

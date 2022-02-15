@@ -21,13 +21,13 @@
 {% endrow %}
 {% row %}
     {% col "col-sm-12 mx-auto" %}
-      {% if 'audio' in project.content_type %}
+      {% if 'audio' in contents.content_type%}
           <audio controls>
-              <source src="{% url 'projects:project_media' project.id %}" type="{{project.content_type}}">
+              <source src="{% url 'projects:uploads' project.id %}" type="{{contents.content_type}}">
           </audio>
       {% endif %}
-      {% if 'image' in project.content_type %}
-          <img src="{% url 'projects:project_media' project.id %}" style="max-width:50%;">
+      {% if 'image' in contents.content_type %}
+          <img src="{% url 'projects:uploads' project.id %}" style="max-width:50%;">
       {% endif %}
     {% endcol %}
     {% col "col-sm-12 mt-4" %}
@@ -56,4 +56,3 @@
 {% endrow %}
 {% endcontainer %}
 {% endblock %}
-
