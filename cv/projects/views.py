@@ -26,7 +26,7 @@ class ProjectDetailView(OwnerDetailView):
     model = Project
     template = 'projects/project_detail.html'
     # Summary not included - Only wanted it for the preview
-    fields = ['title', 'description', 'skills', 'uploads', 'links']
+    fields = ['title', 'description', 'skills', 'uploads']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk):
@@ -39,7 +39,7 @@ class ProjectDetailView(OwnerDetailView):
 class ProjectCreateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title', 'summary', 'description', 'uploads', 'links', 'skills']
+    fields = ['title', 'summary', 'description', 'uploads', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -68,7 +68,7 @@ class ProjectCreateView(LoginRequiredMixin, View):
 class ProjectUpdateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title','summary', 'description', 'uploads', 'links','skills']
+    fields = ['title','summary', 'description', 'uploads', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -94,7 +94,7 @@ class ProjectUpdateView(LoginRequiredMixin, View):
 class ProjectDeleteView(OwnerDeleteView):
     template='projects/project_confirm_delete.html'
     model = Project
-    fields = ['title','summary', 'description', 'uploads', 'links', 'skills']
+    fields = ['title','summary', 'description', 'uploads',  'skills']
     success_url = reverse_lazy('projects:all')
 
 # Sets Content.media field

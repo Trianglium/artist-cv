@@ -35,16 +35,7 @@
     </span>
     <span class="float-end me-5 bg-primary rounded text-center p-4">
     {% col "col-sm-6" %}
-    {% if 'audio' in project.content_type %}
-    <i class="material-icons" id="media-icon">play_circle_outline</i>
-    {% endif %}
-    {% if 'image' in project.content_type %}
-    <i class="material-icons" id="media-icon">photo</i>
-    {% endif %}
-    {% if 'video' in project.content_type %}
-    <i class="material-icons" id="media-icon">ondemand_video</i>
-    {% endif %}
-      <p class="monospace">{{ project.content_type }}</p>
+      <p class="monospace">{{ project.content_upload }}</p>
     {% endcol %}
     </span>
   </div>
