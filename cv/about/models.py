@@ -30,4 +30,10 @@ class Section(models.Model):
 class Contact(models.Model):
     email = models.EmailField(null=True, editable=True),
     number = models.IntegerField(null=True, editable=True)
+    subject = models.CharField(max_length=255, null=True, editable=False)
+    body = models.CharField(max_length=800, null=True, editable=False)
+
+
+    def __str__(self):
+        return self.subject
 

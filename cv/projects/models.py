@@ -55,8 +55,8 @@ class Project(models.Model):
 
 # Project Link (URL) - for External Content that needs to be included
 class Link(models.Model):
-    name = models.CharField(max_length=255, help_text='Name your URL something meaningful. This field is public.', editable=True)
-    info = models.TextField(help_text='Add a Short Description for this URL. This field is public.', blank=True, editable=True)
+    name = models.CharField(max_length=255, help_text='Name your URL something meaningful. This field is public.', null=True, editable=True)
+    info = models.TextField(help_text='Add a Short Description for this URL. This field is public.', null=True, blank=True, editable=True)
     url = models.URLField(
         max_length=1000,
         unique=True,
@@ -68,7 +68,9 @@ class Link(models.Model):
     projects = models.ManyToManyField(Project, editable=True, related_name='content_link', help_text='Copy and Paste the url to the external content you want to include')
 
     def __str__(self):
-        return self.name
-
+        if self.name:
+            return self.name
+        else:
+            return self.url
 
 

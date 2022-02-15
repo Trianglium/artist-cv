@@ -30,8 +30,9 @@ class ProjectDetailView(OwnerDetailView):
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk):
-        p = Project.objects.get(id=pk)
-        return render(request, template_name=self.template, context={'project':p})
+        project = Project.objects.get(id=pk)
+        contents = Content.objects.filter(project_content=project)
+        return render(request, template_name=self.template, context={'project':project, 'contents':contents})
 
 
 # Create a New Project.
@@ -96,11 +97,12 @@ class ProjectDeleteView(OwnerDeleteView):
     fields = ['title','summary', 'description', 'uploads', 'links', 'skills']
     success_url = reverse_lazy('projects:all')
 
-# Sets Content.project_content field
+# Sets Content.media field
 def stream_file(request, pk):
-    content = get_object_or_404(Content, id=pk)
+    pc = get_object_or_404(Project, id=pk)
+    cntnt = get_object_or_404(Content, project_content=pc)
     response = HttpResponse()
-    response['Content-Type'] = content.content_type
-    response['Content-Length'] = len(content.project_content)
-    response.write(content.project_content)
+    response['Content-Type'] = cntnt.content_type
+    response['Content-Length'] = len(cntnt.media)
+    response.write(cntnt.media)
     return response
