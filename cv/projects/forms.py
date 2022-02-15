@@ -42,7 +42,7 @@ class CreateForm(forms.ModelForm):
 
         if commit:
             instance.save()
-            instance.project_set.create(uploads=instance.id)
+            instance.project_set.create(uploads=instance)
             self.save_m2m()
 
 
