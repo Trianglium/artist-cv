@@ -44,7 +44,7 @@
     {% endfor %}
     {% endif %}
   {% endblock %}
-  <br>
+{% block content_head %}
   <div class="bg-primary text-secondary px-4 py-5 text-center">
     <div class="py-5">
           <!-- Block Hero cannot be used with Block hero_title and block hero_text.
@@ -58,6 +58,7 @@
       </div>
     </div>
   </div>
+{% endblock %}
     <br>
     <div class="container-lg">
         {% block content %}
