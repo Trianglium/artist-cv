@@ -11,10 +11,9 @@
 
 
 {% endblock %}
+{% block hero_title %}Blog{% endblock %}
+{% block hero_text %}Welcome to the Blog Home Page, Below you'll find the post feed.{% endblock %}
 {% block content %}
-{% container  "p-5 text-dark bg-primary text-right rounded" %}
-  <h2 class="display-3 text-white">Blog</h2>
-{% endcontainer %}
 {% for post in posts %}
 {% container  "p-5" %}
     {% row "border-bottom m-1 p-1" %}
