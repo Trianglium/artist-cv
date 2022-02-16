@@ -44,8 +44,18 @@
     {% endfor %}
     {% endif %}
   {% endblock %}
-
-
+  <br>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5 bg-primary">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+          <!-- Block Hero cannot be used with Block hero_title and block hero_text.
+          Choose Hero (alone) or the hero_title/hero_text combo, for this block -->
+        {% block hero %}{% endblock %}
+        <h1 class="display-4 fw-bold lh-1 mb-3 text-white">{% block hero_title %}{% endblock %}</h1>
+        <p class="col-lg-10 fs-4">{% block hero_text %}{% endblock %}</p>
+      </div>
+    </div>
+  </div>
     <br>
     <div class="container-lg">
         {% block content %}
