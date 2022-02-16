@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "land_base.html" %}
 {% load project_extras %}
 {% block style %}
 .pt-link {
@@ -19,11 +19,9 @@
 
 
 {% endblock %}
+{% block hero_title %}Projects{% endblock %}
+{% block hero_text %}Welcome to the Projects Index Page{% endblock %}
 {% block content %}
-{% container  "p-5 bg-primary text-light text-right rounded" %}
-  <p class="display-1">Projects</p>
-  <p class="display-5"><small class="text-muted">Welcome to the Projects Index Page</small></p>
-{% endcontainer %}
 {% for project in projects_list %}
   {% row "border-bottom p-4 mt-4" %}
   <div class="clearfix">
