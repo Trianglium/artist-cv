@@ -14,6 +14,12 @@ urlpatterns = [
     path('project/<int:pk>/update', views.ProjectUpdateView.as_view(success_url=reverse_lazy('projects:all')), name='project_update'),
     # ex: /projects/project/3/delete
     path('project/<int:pk>/delete', views.ProjectDeleteView.as_view(success_url=reverse_lazy('projects:all')), name='project_delete'),
+    # ex: /projects/content/create
+    path('content/create', views.ContentCreateView.as_view(success_url=reverse_lazy('projects:all')), name='content_create'),
+    # ex: /projects/content/3/update
+    path('content/<int:pk>/update', views.ContentUpdateView.as_view(success_url=reverse_lazy('projects:all')), name='content_update'),
+    # ex: /projects/content/3/delete
+    path('content/<int:pk>/delete', views.ContentDeleteView.as_view(success_url=reverse_lazy('projects:all')), name='content_delete'),
     # ex: projects/content/uploads/6/
     path('content/uploads/<int:pk>/', views.stream_file, name='uploads'),
 ]
