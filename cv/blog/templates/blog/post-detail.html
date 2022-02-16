@@ -18,12 +18,16 @@
 <br>
 <!-- Author Profile Model and Bio -->
 {% if post.author.profile %}
-    {% row %}
+{% row %}
+  {% col %}
+<h4>About the author</h4>
+    {% row "border-top pt-2" %}
         {% col %}
-            <h4>About the author</h4>
             <p>{{ post.author.profile.bio }}</p>
         {% endcol %}
     {% endrow %}
+    {% endcol %}
+{% endrow %}
 {% endif %}
 
 <!-- Comment Form -->
