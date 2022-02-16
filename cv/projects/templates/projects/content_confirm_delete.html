@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Delete Content</h1>
+<p>Are you sure you want to delete the content?</p>
+{% if content.name %}
+<p>{{ content.name }}</p>
+{% endif %}
+{% if content.content_type %}
+<p>{{ content.content_type }}</p>
+{% endif %}
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+{% endblock %}
