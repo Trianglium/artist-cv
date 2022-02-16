@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load blog_extras %}
+{% block style %}
+.pt-link {
+  text-decoration: none;
+}
+.pt-link:hover {
+  color: #76717b;
+}
+
+
+{% endblock %}
+{% block content %}
+{% container  "p-5 bg-primary text-light text-right rounded" %}
+  <p class="display-1">Blog</p>
+  <p class="display-5"><small class="text-muted">Post Feed</small></p>
+{% endcontainer %}
+{% for post in posts %}
+{% container  "p-5" %}
+    {% row "border-bottom m-1 p-1" %}
+        {% col %}
+        <h3>{{ post.title }}</h3>
+            {% include 'blog/post-byline.html' %}
+            <p>{{ post.summary }}</p>
+            <p>
+                ({{ post.content|wordcount }} words)
+                <a href="{% url 'blog:post_detail' post.slug %}" class="pt-link">Read More</a
+            </p>
+        {% endcol %}
+    {% endrow %}
+{% endcontainer %}
+{% endfor %}
+{% endblock %}

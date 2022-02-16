@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load blog_extras %}
+{% block content %}
+<!-- Blog Title with preview ('content') of post -->
+{% container "pt-2 pb-0" %}
+<h2>{{ post.title }}</h2>
+{% endcontainer %}
+{% row %}
+    {% col %}
+        {% include "blog/post-byline.html" %}
+    {% endcol %}
+{% endrow %}
+{% row %}
+    {% col %}
+        {{ post.content|safe }}
+    {% endcol %}
+{% endrow %}
+<br>
+<!-- Author Profile Model and Bio -->
+{% if post.author.profile %}
+    {% row %}
+        {% col %}
+            <h4>About the author</h4>
+            <p>{{ post.author.profile.bio }}</p>
+        {% endcol %}
+    {% endrow %}
+{% endif %}
+
+<!-- Comment Form -->
+{% row %}
+  {% col %}
+    {% include "blog/post-comments.html" %}
+  {% endcol %}
+{% endrow %}
+<!-- Most Recent Blog Posts -->
+{% row %}
+    {% col %}
+        {% recent_posts post %}
+    {% endcol %}
+{% endrow %}
+{% endblock %}
