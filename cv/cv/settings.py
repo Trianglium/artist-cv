@@ -63,6 +63,7 @@ class Dev(configurations.Configuration):
         # Project apps
         'projects.apps.ProjectsConfig',
         'about.apps.AboutConfig',
+        'blog.apps.BlogConfig',
     ]
 
     MIDDLEWARE = [
