@@ -25,14 +25,14 @@
 {% for project in projects_list %}
   {% row "border-bottom p-4 mt-4" %}
   <div class="clearfix">
-    {% col "col-sm-6" %}
+    {% col "col-sm-12 col-md-7" %}
     <span class="float-start">
-      <p class="display-4"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></p>
+      <h3 class="h1"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></h3>
       <p class="h3"><small class="text-muted">{{ project.summary }}</small></p>
     {% endcol %}
     </span>
     <span class="float-end me-5 bg-primary rounded text-center p-4">
-    {% col "col-sm-6" %}
+    {% col "col-sm-12 col-md-5" %}
       <p class="monospace">{{ project.content_upload }}</p>
     {% endcol %}
     </span>

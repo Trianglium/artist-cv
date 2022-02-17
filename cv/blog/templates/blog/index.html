@@ -20,7 +20,7 @@
         {% col %}
         <h3 class="h1">{{ post.title }}</h3>
             {% include 'blog/post-byline.html' %}
-            <p class="text-dark lead">{{ post.summary }}</p>
+            <p class="h3"><small class="text-muted">{{ post.summary }}</small></p>
             <p>
                 ({{ post.content|wordcount }} words)
                 <a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link">Read More</a
