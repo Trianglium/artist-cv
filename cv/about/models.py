@@ -6,6 +6,17 @@ from django.core.validators import MinLengthValidator
 from django.conf import settings
 from django.contrib.auth.models import User
 
+
+
+
+class Subject(models.Model):
+    name = models.TextField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.value
+
+
+
 # About Section Model; Customizable.
 # Example About Sections: "Work Experience", "Education and Certification", "Technologies and Languages", "Skills", "Objective", etc.
 class CustomSection(models.Model):
@@ -15,9 +26,5 @@ class CustomSection(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-
-class Subject(models.Model):
-    name = models.TextField(max_length=100, unique=True)
-
     def __str__(self):
-        return self.value
+        return '[{}] | {} '.format(self.section_subject, self.head)
