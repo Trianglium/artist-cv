@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from cvauth_auth.models import User
+from cvuser_auth.models import User
 
 
 admin.site.register(User, UserAdmin)
