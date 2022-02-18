@@ -60,10 +60,13 @@ class Dev(configurations.Configuration):
         'crispy_bootstrap5',
         'django_extensions',
         'taggit',
+        # Custom User Auth app
+        'cvuser_auth.apps.CvuserAuthConfig',
         # Project apps
         'projects.apps.ProjectsConfig',
-        'about.apps.AboutConfig',
         'blog.apps.BlogConfig',
+        'about.apps.AboutConfig',
+        'resume.apps.ResumeConfig',
     ]
 
     MIDDLEWARE = [
@@ -113,6 +116,10 @@ class Dev(configurations.Configuration):
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     ]
+
+    # Custom User Auth
+
+    AUTH_USER_MODEL = "cvuser_auth.User"
 
     # Password validation
     # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
