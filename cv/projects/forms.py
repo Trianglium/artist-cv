@@ -53,8 +53,8 @@ class MediaForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        #fields = ['title', 'summary', 'description', 'content_upload', 'skills']
-        fields = "__all__"
+        #fields = ['title', 'summary', 'content', 'content_upload', 'tags']
+        fields = ['title', 'summary', 'content', 'content_upload', 'links', 'skills', 'owner']
         exclude = ['created_at', 'modified_at']
 
     def __init__(self, *args, **kwargs):
@@ -66,7 +66,7 @@ class ProjectForm(forms.ModelForm):
 class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
-        fields = "__all__"
+        fields = ['url', 'label', 'alt']
 
     def __init__(self, *args, **kwargs):
         super(LinkForm, self).__init__(*args, **kwargs)
