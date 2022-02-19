@@ -46,8 +46,8 @@ class Volunteer(Organization):
 class Technical(Skill):
     # Inherits all fields from Skill
     class Meta:
-        verbose_name = 'Hard Skill'
-        verbose_name_plural = 'Hard Skills'
+        verbose_name = 'Technical/Hard Skill'
+        verbose_name_plural = 'Technical/Hard Skills'
 
     def __str__(self):
         return self.skill_name
@@ -55,8 +55,8 @@ class Technical(Skill):
 class Interpersonal(Skill):
     # Inherits all fields from Skill
     class Meta:
-        verbose_name = 'Soft Skill'
-        verbose_name_plural = 'Soft Skills'
+        verbose_name = 'Interpersonal/Soft Skill'
+        verbose_name_plural = 'Interpersonal/Soft Skills'
 
     def __str__(self):
         return self.skill_name
@@ -67,12 +67,12 @@ class Interpersonal(Skill):
 # Again, Allowing for a separation of concerns and added security.
 class ProfessionalProfile(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="resume"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="resume_profile"
     )
-    objective = models.TextField(null=True, editable=True, help_text='(Optional) Resume Objective, generally found at the top of a resume/cv.')
-    resume_summary = models.TextField(null=True, editable=True, help_text='(Optional) Resume Summary Section')
-    public_email = models.TextField(null=True, editable=True, help_text='(Recommended) Enter the email employers should contact you at. This will be public and can be different from the signup email if you so choose.')
-    resume_link = models.TextField(null=True, editable=True, help_text='(Recommended) Upload your resume to Google Drive and Share the File with anyone who has the link. Copy and Paste the link into this field')
+    objective = models.TextField(null=True, blank=True, editable=True, help_text='(Optional) Resume Objective, generally found at the top of a resume/cv.')
+    resume_summary = models.TextField(null=True, blank=True, editable=True, help_text='(Optional) Resume Summary Section')
+    public_email = models.CharField(max_length=250, null=True, blank=True, editable=True, help_text='(Recommended) Enter the email employers should contact you at. This will be public and can be different from the signup email if you so choose.')
+    resume_link = models.TextField(null=True, blank=True, editable=True, help_text='(Recommended) Upload your resume to Google Drive and Share the File with anyone who has the link. Copy and Paste the link into this field')
 
 
 
