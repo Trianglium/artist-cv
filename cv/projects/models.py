@@ -47,6 +47,7 @@ class Project(BaseArticle):
     content_upload = models.ManyToManyField(
         Content,
         related_name='project_content',
+        blank=True,
         editable=True,
         help_text='Upload the Content to use with this project post and to store in memory. \nUploading media content does not work through the administration panel.',
     )

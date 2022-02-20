@@ -13,29 +13,24 @@
 {% row "bottom-border text-center mb-1" %}
 <span style="float: right;">
 {% if project.owner == user %}
-<!-- Edit / Update and Delete Icons (Logged in User, only) -->
   <a href="{% url 'projects:project_update' project.id %}"><i class="fa fa-pencil"></i></a>
   <a href="{% url 'projects:project_delete' project.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
 </span>
-<!-- Project Title (top) -->
 <p class="display-3">{{ project.title }}</p>
 {% endrow %}
 {% row %}
-    {% col "col-sm-12 col-md-4 mx-auto" %}
-      {% if 'audio' in contents.content_type %}
-          <!-- Audio Player for any audio files attached to project -->
+    {% col "col-sm-12 mx-auto" %}
+      {% if 'audio' in contents.content_type%}
           <audio controls>
               <source src="{% url 'projects:uploads' project.id %}" type="{{contents.content_type}}">
           </audio>
       {% endif %}
       {% if 'image' in contents.content_type %}
-          <!-- Image Files attached to project -->
-          <img src="{% url 'projects:uploads' project.id %}" style="max-width:50%;">
+          <img src="{% url 'projects:uploads' project.content_upload %}" style="max-width:50%;">
       {% endif %}
     {% endcol %}
-    {% col "col-sm-12  col-md- 8 mt-4" %}
-    <!-- Project Content (Main body of text) -->
+    {% col "col-sm-12 mt-4" %}
       {{ project.content|safe }}
     {% endcol %}
 {% endrow %}

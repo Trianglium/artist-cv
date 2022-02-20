@@ -24,13 +24,20 @@
 {% block content %}
 {% for project in projects_list %}
   {% row "border-bottom p-4 mt-4" %}
-    {% col "col-12 col-sm-8 col-lg-9 float-start" %}
+  <div class="clearfix">
+    {% col "col-sm-12 col-md-7" %}
+    <span class="float-start">
       <h3 class="h1"><a class="pt-link" href="{% url 'projects:project_detail' project.id %}">{{ project.title }}</a></h3>
       <p class="h3"><small class="text-muted">{{ project.summary }}</small></p>
     {% endcol %}
-    {% col "col-12 col-sm-4 col-lg-3 bg-primary float-end bg-primary rounded text-center p-4" %}
-      <p class="monospace">Hello world</p>
+    </span>
+
+    <span class="float-end me-5 bg-primary rounded text-center p-4">
+    {% col "col-sm-12 col-md-5 bg-primary" %}
+      <p class="monospace">{{ project.content_upload }}</p>
     {% endcol %}
+    </span>
+  </div>
   {% endrow %}
   {% empty %}
   {% row "border-bottom" %}
