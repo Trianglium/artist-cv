@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% load blog_extras %}
+{% block style %}
+.prpl-link {
+  text-decoration: none;
+}
+.prpl-link:hover {
+  color: #7500AC;
+}
+{% endblock %}
 {% block content %}
 <!-- Blog Title with preview ('content') of post -->
 {% container "pt-2 pb-0" %}

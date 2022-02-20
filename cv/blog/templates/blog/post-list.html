@@ -1,6 +1,9 @@
 <h4>{{ title }}</h4>
-<ul>
 {% for post in posts %}
-    <li><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></li>
+    <div class="card mt-4 shadow-none p-3 mb-5 bg-light rounded">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link" style="color: #32004A;">{{ post.title }}</a></h5>
+            <p class-"card-body">{{ post.summary }}</p>
+        </div>
+    </div>
 {% endfor %}
-</ul>

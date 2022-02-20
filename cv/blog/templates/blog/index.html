@@ -2,9 +2,9 @@
 {% load blog_extras %}
 {% block style %}
 .prpl-link {
-  color: #32004A;
   text-decoration: none;
 }
+
 .prpl-link:hover {
   color: #7500AC;
 }
@@ -18,12 +18,12 @@
 {% container  "p-5" %}
     {% row "border-bottom m-1 p-1" %}
         {% col %}
-        <h3 class="h1">{{ post.title }}</h3>
+        <h3 class="h1"><a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link">{{ post.title }}</a></h3>
             {% include 'blog/post-byline.html' %}
             <p class="h3"><small class="text-muted">{{ post.summary }}</small></p>
             <p>
                 ({{ post.content|wordcount }} words)
-                <a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link">Read More</a
+                <a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link" style="color: #32004A;">Read More</a
             </p>
         {% endcol %}
     {% endrow %}
