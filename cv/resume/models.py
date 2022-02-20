@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 from base.models import Organization, Skill
 
-
-
 class Professional(Organization):
     # Inherits all fields from Organization
     title = models.CharField(max_length=255, help_text='Job Title or Professional Title')
