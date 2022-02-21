@@ -3,7 +3,7 @@ from django.conf import settings
 
 from taggit.managers import TaggableManager
 from base.models import BaseArticle, BaseLink
-
+from ckeditor import RichTextField
 
 
 class Content(models.Model):

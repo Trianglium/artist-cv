@@ -60,6 +60,7 @@ class Dev(configurations.Configuration):
         'crispy_bootstrap5',
         'django_extensions',
         'taggit',
+        'ckeditor',
         # Custom User Auth app
         'cvuser_auth.apps.CvuserAuthConfig',
         # Project apps
@@ -172,6 +173,10 @@ class Dev(configurations.Configuration):
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATIC_URL = '/static/'
+
+    # Django-CKEditor
+    # https://django-ckeditor.readthedocs.io/en/latest/#installation
+    # CKEDITOR_UPLOAD_PATH = '/uploads'
 
     # Bootstrap 5 & Crispy forms config
     CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
