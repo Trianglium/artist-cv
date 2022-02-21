@@ -175,8 +175,8 @@ class Dev(configurations.Configuration):
     STATIC_URL = '/static/'
 
     # Django-CKEditor
-    # https://django-ckeditor.readthedocs.io/en/latest/#installation
-    # CKEDITOR_UPLOAD_PATH = '/uploads'
+    # https://django-ckeditor.readthedocs.io/en/latest/#required-for-using-widget-with-file-upload
+    CKEDITOR_UPLOAD_PATH = '/uploads'
 
     # Bootstrap 5 & Crispy forms config
     CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
