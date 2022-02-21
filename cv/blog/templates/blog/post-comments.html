@@ -1,16 +1,15 @@
 {% load blog_extras crispy_forms_tags %}
 <h4>Comments</h4>
 {% for comment in post.comments.all %}
-  {% row "border-top pt-2" %}
-      {% col "pb-0" %}
-          <p class="h6">Posted by {{ comment.creator }} on {{ comment.created_at|date:"M, d Y h:i" }}</p>
-      {% endcol %}
-  {% endrow %}
-  {% row "border-bottom pt-0 mb-4" %}
-      {% col %}
-          <p>{{ comment.content }}</p>
-      {% endcol %}
-  {% endrow %}
+      <div class="card mt-4 p-3 bm-5">
+          <div class="card-body">
+            <h6 class="card-title text-muted">{{ comment.creator }}</h6>
+            <div class="ms-1 mb-2">
+                <p class="card-text">{{ comment.content }}</p>
+            </div>
+            <p class="card-text"><small class="text-muted">{{ comment.created_at|date:"M, d Y h:i"}}</small></p>
+          </div>
+      </div>
   {% empty %}
       {% row "border-top border-bottom" %}
           {% col %}

@@ -1,9 +1,9 @@
 <h4>{{ title }}</h4>
 {% for post in posts %}
-    <div class="card mt-4 shadow-none p-3 mb-5 bg-light rounded">
+    <div class="card mt-4 shadow-none p-3 mb-5 bg-light border-bottom border-top">
         <div class="card-body">
             <h5 class="card-title"><a href="{% url 'blog:post_detail' post.slug %}" class="prpl-link" style="color: #32004A;">{{ post.title }}</a></h5>
-            <p class-"card-body">{{ post.summary }}</p>
+            <p class="card-body">{{ post.summary }}</p>
         </div>
     </div>
 {% endfor %}
