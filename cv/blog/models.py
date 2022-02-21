@@ -3,11 +3,15 @@ from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from base.models import BaseContent, BaseArticle
+from base.models import BaseContent, BaseArticle, BaseComment
+from ckeditor.fields import RichTextField
+
+from datetime import datetime
+import re
 
 
 
-class Comment(BaseContent):
+class Comment(BaseComment):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
@@ -15,6 +19,11 @@ class Comment(BaseContent):
 
     def __str__(self):
         return self.creator
+
+    def days_ago(self):
+        # Outputs ' _ days ago' depending on how many days ago the comment was created
+        days_since_pub = datetime.now() - self.created_at
+        return re.sub(r'(,.+)', ' ago', str(days_since_pub))
 
 class Tag(models.Model):
     value = models.TextField(max_length=100, unique=True)
@@ -24,6 +33,7 @@ class Tag(models.Model):
 
 
 class Post(BaseArticle):
+    content= RichTextField(blank=True, null=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     # db_index is required. do not remove.
     published_at = models.DateTimeField(blank=True, null=True, db_index=True)
