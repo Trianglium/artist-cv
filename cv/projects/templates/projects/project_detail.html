@@ -23,15 +23,17 @@
 {% endrow %}
 {% row %}
     {% col "col-sm-12 col-md-4 mx-auto" %}
-      {% if 'audio' in contents.content_type %}
+      {% if 'audio' in project.content_upload.content_type %}
           <!-- Audio Player for any audio files attached to project -->
           <audio controls>
-              <source src="{% url 'projects:uploads' project.id %}" type="{{contents.content_type}}">
+              <source src="{% url 'projects:uploads' project.content_upload.id %}" type="{{contents.content_type}}">
           </audio>
+          <p>Audio</p>
       {% endif %}
-      {% if 'image' in contents.content_type %}
+      {% if 'image' in project.content_upload.content_type %}
           <!-- Image Files attached to project -->
-          <img src="{% url 'projects:uploads' project.id %}" style="max-width:50%;">
+          <img src="{% url 'projects:uploads' project.content_upload.id %}" style="max-width:50%;">
+          <p>Image</p>
       {% endif %}
     {% endcol %}
     {% col "col-sm-12  col-md- 8 mt-4" %}
