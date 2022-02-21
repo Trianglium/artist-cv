@@ -3,7 +3,9 @@ from django.conf import settings
 
 from taggit.managers import TaggableManager
 from base.models import BaseArticle, BaseLink
-from ckeditor import RichTextField
+
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Content(models.Model):
@@ -42,24 +44,8 @@ class Link(BaseLink):
 class Project(BaseArticle):
     # Inherits all fields from BaseArticle
     # NOTE: the 'content' field was once called 'description'
-
-    # Media - Upload to MemoryStorage (Optional)
-    content_upload = models.ManyToManyField(
-        Content,
-        related_name='project_content',
-        blank=True,
-        editable=True,
-        help_text='Upload the Content to use with this project post and to store in memory. \nUploading media content does not work through the administration panel.',
-    )
-
-    # Link - External Media Resource or Other URL to include
-    links = models.ManyToManyField(
-        Link,
-        blank=True,
-        editable=True,
-        related_name='projects',
-        help_text='Copy and Paste the url to the external content you want to include',
-    )
+    content= RichTextField(blank=True, null=True)
+    body = RichTextUploadingField(blank=True, null=True)
     # Use the skill field as a sort of ‘tag’ for what the project is about.
     # It’s recommended that skill names remain consistent as to help with navigating the site.
     skills = TaggableManager(blank=True)

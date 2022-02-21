@@ -2,13 +2,15 @@
 {% load project_extras %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% if user.is_authenticated %}
 <p>
-  <form action="" method="post" enctype="multipart/form-data">
+  <form action="" method="POST">
     {% csrf_token %}
-    {{ form|crispy }}
+    {{ form.media }}
+    {{ form.as_p }}
     <input type="submit" value="Submit">
     <input type="submit" value="Cancel" onclick="window.location.href='{% url 'projects:all' %}';return false;">
   </form>
 </p>
-
+{% endif %}
 {% endblock %}

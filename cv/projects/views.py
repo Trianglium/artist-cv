@@ -44,7 +44,7 @@ class ProjectDetailView(OwnerDetailView):
 class ProjectCreateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title', 'summary', 'description', 'uploads', 'skills']
+    fields = ['title', 'summary', 'description', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -76,7 +76,7 @@ class ProjectCreateView(LoginRequiredMixin, View):
 class ProjectUpdateView(LoginRequiredMixin, View):
     template='projects/project_form.html'
     model = Project
-    fields = ['title','summary', 'description', 'uploads', 'skills']
+    fields = ['title','summary', 'description', 'skills']
     success_url = reverse_lazy('projects:all')
 
     def get(self, request, pk=None):
@@ -102,7 +102,7 @@ class ProjectUpdateView(LoginRequiredMixin, View):
 class ProjectDeleteView(OwnerDeleteView):
     template='projects/project_confirm_delete.html'
     model = Project
-    fields = ['title','summary', 'description', 'uploads',  'skills']
+    fields = ['title','summary', 'description',  'skills']
     success_url = reverse_lazy('projects:all')
 
 

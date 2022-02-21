@@ -53,8 +53,6 @@ class MediaForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        #fields = ['title', 'summary', 'content', 'content_upload', 'tags']
-        fields = ['title', 'summary', 'content', 'content_upload', 'links', 'skills', 'owner']
         exclude = ['created_at', 'modified_at']
 
     def __init__(self, *args, **kwargs):
