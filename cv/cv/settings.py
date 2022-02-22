@@ -61,6 +61,7 @@ class Dev(configurations.Configuration):
         'django_extensions',
         'taggit',
         'ckeditor',
+        'ckeditor_uploader',
         # Custom User Auth app
         'cvuser_auth.apps.CvuserAuthConfig',
         # Project apps
@@ -176,7 +177,7 @@ class Dev(configurations.Configuration):
 
     # Django-CKEditor
     # https://django-ckeditor.readthedocs.io/en/latest/#required-for-using-widget-with-file-upload
-    CKEDITOR_UPLOAD_PATH = '/uploads'
+    CKEDITOR_UPLOAD_PATH =  os.path.join(MEDIA_ROOT, 'uploads')
 
     # Bootstrap 5 & Crispy forms config
     CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
