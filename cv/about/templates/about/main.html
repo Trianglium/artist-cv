@@ -1,1 +1,25 @@
 {% extends "land_base.html" %}
+{% load about_extras %}
+{% load static %}
+
+{% block style %}
+{% endblock %}
+
+{% block hero_title %}Resume{% endblock %}
+{% block hero_text %}{% endblock %}
+
+
+{% block contact %}
+{% if entry_list %}
+  {% for entry in entry_list %}
+  {% row "border-bottom p-4 mt-4" %}
+    {% col "col-12" %}
+     <h3 class="h1">{{ entry.resume_section }}</h3>
+     <p class="h3"><small class="text-muted">{{ entry.content|safe }}</small></p>
+     {% endcol %}
+  {% endrow %}
+  {% endfor %}
+{% endif %}
+
+
+{% endblock %}
