@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import URLValidator
-
+from datetime import datetime
 
 class BaseAutoDate(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -10,8 +10,14 @@ class BaseAutoDate(models.Model):
     class Meta:
        abstract = True
 
-class BaseContent(BaseAutoDate):
-    content = models.TextField(null=True, blank=True, help_text='Input the main body of text (aka the main content)')
+class BaseComment(BaseAutoDate):
+    content = models.TextField(null=True, blank=True, editable=True, help_text='Add a comment on this post')
+    class Meta:
+       abstract = True
+
+class BaseContent(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
     class Meta:
        abstract = True
@@ -39,15 +45,15 @@ class BaseLink(models.Model):
 
 class Organization(models.Model):
     # Name of the Company, Employer, School, Charity, Camp, Website, or Entity, (ETC) who either employed, or educated, you
-    institution_name = models.CharField(max_length=155, null=True, editable=True, help_text='Name of the Company, Organization, University, School, Buisness, Website, Institution, Chairty, Establishment, etc.')
+    institution_name = models.CharField(max_length=155, null=True, blank=True, editable=True, help_text='Name of the Company, Organization, University, School, Buisness, Website, Institution, Chairty, Establishment, etc.')
     # Month / Year of first day (Day can be set to whatever, it will be ignored)
-    start_date = models.DateField(help_text='Input Month / Year of first day (Day can be set to whatever, it will be ignored')
+    start = models.DateField(null=True, blank=True, help_text='Input Month / Year of first day (Day can be set to whatever, it will be ignored')
     # Month / Year of last day (Day can be set to whatever, it will be ignored)
-    end_date = models.DateField(help_text='Input Month / Year of last day (Day can be set to whatever, it will be ignored')
+    end = models.DateField(null=True, blank=True, help_text='Input Month / Year of last day (Day can be set to whatever, it will be ignored')
     # Basic summary. What you did there (if work). Made for "Jobs" but can be added to any model.
-    overview = models.TextField(null=True, editable=True, help_text='Basic Summary of what you did there')
+    overview = models.TextField(null=True, blank=True, editable=True, help_text='Basic Summary of what you did there')
     # Achievements and other notable details to highlight/emphasize
-    highlights = models.TextField(null=True, editable=True, help_text='Achievements, awards, and other notable details to highlight/emphasize')
+    highlights = models.TextField(null=True, blank=True, editable=True, help_text='Achievements, awards, and other notable details to highlight/emphasize')
     # (Optional) Meant for professional fields (IE Job and etc) or Institutions where location is relavent.
     location = models.CharField(
         max_length=200,
@@ -57,12 +63,30 @@ class Organization(models.Model):
         help_text='(Optional) Meant for professional fields (IE Job and etc) or Institutions where location is relavent. Typically, Location is not relavent and this field can be left blank.',
     )
 
-    def active_dates(self):
-        self.start_date
-
 
     class Meta:
         abstract = True
+
+    def start_date(self, short_form=False):
+        # Function to call instead of printing out a datetime object from (datefield) Organization.start
+        if short_form:
+            return self.start.strftime("%b %Y")
+
+        return self.start.strftime("%B %Y")
+
+    def end_date(self, short_form=False):
+        # Function to call instead of printing out a datetime object from (datefield) Organization.end
+        if short_form:
+            return self.end.strftime("%b %Y")
+
+        return self.end.strftime("%B %Y")
+
+    def active_date(self, short_form=False):
+        # Function to call instead of printing out a datetime object from (datefield) Organization.start
+        if short_form:
+            return self.start.strftime("%b %Y")
+
+        return self.start.strftime("%B %Y")
 
 class Skill(models.Model):
     # Label for the skill. IE "Python Programming", "Interpretive Dance", "Microsoft Office"
@@ -85,8 +109,11 @@ class Skill(models.Model):
         \nNovice is the most beginner level while Expert level represents Mastery.
         \nBe Honest with yourself on these. Think about how confident you would be recieving a blind interview that involves using the skill.''',
     )
+
     class Meta:
         abstract = True
+
+
 
 
 
