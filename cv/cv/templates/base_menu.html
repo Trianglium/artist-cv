@@ -2,13 +2,13 @@
 {% block navbar %}
 <ul class="navbar-nav me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="#">About</a>
+    <a class="nav-link" href="{% url 'about:all' %}">About</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Portfolio</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Contact</a>
+    <a class="nav-link" href="{% url 'about:all' %}">Contact</a>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="{% url 'projects:all' %}">Projects</a>
