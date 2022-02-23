@@ -8,8 +8,11 @@ register = template.Library()
 
 # Rows
 @register.simple_tag
-def row(extra_classes=''):
-    return format_html('<div class="row {} m-2 p-2">', extra_classes)
+def row(extra_classes='', align=''):
+    if align == '':
+        return format_html('<div class="row {} m-2 p-2">', extra_classes)
+    else:
+        return format_html('<div class="row {} m-2 p-2" align="{}">', extra_classes, align)
 
 @register.simple_tag
 def endrow():
