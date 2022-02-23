@@ -9,17 +9,21 @@
 {% block hero_text %}{% endblock %}
 
 
-{% block contact %}
-{% if entry_list %}
-  {% for entry in entry_list %}
-  {% row "border-bottom p-4 mt-4" %}
+{% block content %}
+{% for section in section_list %}
+  {% row "border-top border-bottom p-4 mt-4" %}
     {% col "col-12" %}
-     <h3 class="h1">{{ entry.resume_section }}</h3>
-     <p class="h3"><small class="text-muted">{{ entry.content|safe }}</small></p>
-     {% endcol %}
+     <h2 class="display-5">{{ section.title }}</h2>
+    {% endcol %}
   {% endrow %}
-  {% endfor %}
-{% endif %}
+  {% row "p-4 mt-4" %}
+    {% for entry in section.entry_set.all %}
+      {% col "col-12" %}
+       <p class="lead">{{ entry.content|safe }}</p>
+      {% endcol %}
+    {% endfor %}
+  {% endrow %}
+{% endfor %}
 
 
 {% endblock %}
