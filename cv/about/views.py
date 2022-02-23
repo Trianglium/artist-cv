@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from .models import Section, Entry
-from .forms import EntryForm, SectionForm
+from .forms import EntryForm, SectionForm, ContactForm
 
 class EntryListView(ListView):
      model = Entry
@@ -57,7 +57,6 @@ class EntryCreateView(CreateView, LoginRequiredMixin):
      fields = ['content', 'resume_section', 'start_date', 'end_date']
      template_name = 'about/entry_form.html'
      success_url = reverse_lazy('about:all')
-     success_url = reverse_lazy('about:all')
 
 class EntryUpdateView(UpdateView, LoginRequiredMixin):
      model = Entry
@@ -70,3 +69,20 @@ class EntryDeleteView(DeleteView, LoginRequiredMixin):
     fields = ['content', 'resume_section', 'start_date', 'end_date']
     template_name = 'about/entry_confirm_delete.html'
     success_url = reverse_lazy('about:all')
+
+
+
+
+class ContactFormView(FormView):
+    form_class = ContactForm
+    template_name = 'about/contact.html'
+    # TO DO - Create a view for 'thanks' or some other confirmation and change success_url to that
+    success_url = reverse_lazy('about:all')
+    # TO DO - add methods
+
+
+
+
+
+
+
