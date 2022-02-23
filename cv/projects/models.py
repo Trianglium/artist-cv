@@ -44,8 +44,7 @@ class Link(BaseLink):
 class Project(BaseArticle):
     # Inherits all fields from BaseArticle
     # NOTE: the 'content' field was once called 'description'
-    content= RichTextField(blank=True, null=True)
-    body = RichTextUploadingField(blank=True, null=True)
+    content = RichTextUploadingField(blank=True, null=True)
     # Use the skill field as a sort of ‘tag’ for what the project is about.
     # It’s recommended that skill names remain consistent as to help with navigating the site.
     skills = TaggableManager(blank=True)
