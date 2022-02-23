@@ -3,14 +3,18 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% if user.is_authenticated %}
-<p>
-  <form action="" method="POST">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'about:all' %}';return false;">
-  </form>
-</p>
+{% row "p-4 mt-4" %}
+    {% col "col-12 bg-primary" %}
+    <p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form|crispy }}
+            <input type="submit" value="Submit">
+            <input type="submit" value="Cancel" onclick="window.location.href='{% url 'about:all' %}';return false;">
+        </form>
+    </p>
+    {% endcol %}
+{% endrow %}
 {% endif %}
 {% endblock %}
