@@ -1,1 +1,15 @@
-{% extends "base.html" %}
+{% extends "land_base.html" %}
+{% load blog_extras crispy_forms_tags %}
+{% block hero_title %}Contact{% endblock %}
+{% block hero_text %} 999 999 9999 <br>myemail@email.com{% endblock %}
+
+{% block content %}
+{% row "bg-primary text-white" %}
+{% col %}
+<p> 999 999 9999 </p>
+<p> myemail@email.com </p>
+{% endcol %}
+{% col %}
+{% endcol %}
+{% endrow %}
+{% endblock %}
