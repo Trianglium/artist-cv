@@ -9,7 +9,7 @@ from .forms import EntryForm, SectionForm, ContactForm
 
 class EntryListView(ListView):
      model = Entry
-     fields = ['content', 'resume_section', 'start_date', 'end_date']
+     fields = ['content', 'resume_section']
      template_name = 'about/main.html'
 
      def get_context_data(self, **kwargs):
@@ -54,19 +54,19 @@ class SectionDeleteView(DeleteView, LoginRequiredMixin):
 
 class EntryCreateView(CreateView, LoginRequiredMixin):
      model = Entry
-     fields = ['content', 'resume_section', 'start_date', 'end_date']
+     fields = ['content', 'resume_section']
      template_name = 'about/entry_form.html'
      success_url = reverse_lazy('about:all')
 
 class EntryUpdateView(UpdateView, LoginRequiredMixin):
      model = Entry
-     fields = ['content', 'resume_section', 'start_date', 'end_date']
+     fields = ['content', 'resume_section']
      template_name = 'about/entry_form.html'
      success_url = reverse_lazy('about:all')
 
 class EntryDeleteView(DeleteView, LoginRequiredMixin):
     model = Entry
-    fields = ['content', 'resume_section', 'start_date', 'end_date']
+    fields = ['content', 'resume_section']
     template_name = 'about/entry_confirm_delete.html'
     success_url = reverse_lazy('about:all')
 
